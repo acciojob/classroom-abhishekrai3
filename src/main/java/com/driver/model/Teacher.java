@@ -1,25 +1,26 @@
 package com.driver;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class Student {
+
+public class Teacher {
 
     private String name;
-    private int age;
-    private double averageScore;
 
-    //@Bean
-    public Student(){
+    private int numberOfStudents;
+
+    private int age;
+
+    public Teacher() {
 
     }
-   // @Bean
-    public Student(String name, int age, double averageScore) {
+
+    public Teacher(String name, int numberOfStudents, int age) {
         this.name = name;
+        this.numberOfStudents = numberOfStudents;
         this.age = age;
-        this.averageScore = averageScore;
     }
 
     public String getName() {
@@ -30,19 +31,19 @@ public class Student {
         this.name = name;
     }
 
+    public int getNumberOfStudents() {
+        return numberOfStudents;
+    }
+
+    public void setNumberOfStudents(int numberOfStudents) {
+        this.numberOfStudents = numberOfStudents;
+    }
+
     public int getAge() {
         return age;
     }
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public double getAverageScore() {
-        return averageScore;
-    }
-
-    public void setAverageScore(double averageScore) {
-        this.averageScore = averageScore;
     }
 }

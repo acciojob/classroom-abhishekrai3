@@ -1,49 +1,74 @@
 package com.driver;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import java.util.*;
 
-@Configuration
+import com.driver.Student;
+import com.driver.Teacher;
+import org.springframework.stereotype.Repository;
 
-public class Teacher {
+@Repository
+public class StudentRepository {
 
-    private String name;
+    private HashMap<String, Student> studentMap;
+    private HashMap<String, Teacher> teacherMap;
+    private HashMap<String, List<String>> teacherStudentMapping;
 
-    private int numberOfStudents;
-
-    private int age;
-
-    public Teacher() {
-
+    public StudentRepository(){
+        this.studentMap = new HashMap<String, Student>();
+        this.teacherMap = new HashMap<String, Teacher>();
+        this.teacherStudentMapping = new HashMap<String, List<String>>();
     }
 
-    public Teacher(String name, int numberOfStudents, int age) {
-        this.name = name;
-        this.numberOfStudents = numberOfStudents;
-        this.age = age;
+    public void saveStudent(Student student){
+        String name= student.getName();
+        studentMap.put(name, student);
     }
 
-    public String getName() {
-        return name;
+    public void saveTeacher(Teacher teacher){
+        String name= teacher.getName();
+        teacherMap.put(name, teacher);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void saveStudentTeacherPair(String student, String teacher){
+        if (!teacherStudentMapping.containsKey(teacher)) {
+            teacherStudentMapping.put(teacher, new ArrayList<>());
+        }
+        teacherStudentMapping.get(teacher).add(student);
     }
 
-    public int getNumberOfStudents() {
-        return numberOfStudents;
+    public Student findStudent(String student){
+         if(studentMap.containsKey(student)){
+             return studentMap.get(student);
+         }
+         return null;
     }
 
-    public void setNumberOfStudents(int numberOfStudents) {
-        this.numberOfStudents = numberOfStudents;
+    public Teacher findTeacher(String teacher){
+        // your code goes here
+        if(teacherMap.containsKey(teacher)){
+            return teacherMap.get(teacher);
+        }
+        return null;
     }
 
-    public int getAge() {
-        return age;
+    public List<String> findStudentsFromTeacher(String teacher){
+        List<String> orDefault = teacherStudentMapping.getOrDefault(teacher, new ArrayList<>());
+        return orDefault;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public List<String> findAllStudents(){
+        return new ArrayList<>(studentMap.keySet());
+    }
+
+    public void deleteTeacher(String teacher){
+
+        teacherMap.remove(teacher);
+        teacherStudentMapping.remove(teacher);
+    }
+
+    public void deleteAllTeachers(){
+        teacherMap.clear();
+        studentMap.clear();
+        teacherStudentMapping.clear();
     }
 }

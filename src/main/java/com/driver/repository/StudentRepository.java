@@ -29,11 +29,13 @@ public class StudentRepository {
     }
 
     public void saveStudentTeacherPair(String student, String teacher){
+       if(studentMap.containsKey(student) && teacherMap.containsKey(teacher)){
         if (!teacherStudentMapping.containsKey(teacher)) {
             teacherStudentMapping.put(teacher, new ArrayList<>());
         }
         teacherStudentMapping.get(teacher).add(student);
     }
+}
 
     public Student findStudent(String student){
          if(studentMap.containsKey(student)){

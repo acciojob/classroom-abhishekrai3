@@ -1,10 +1,10 @@
 package com.driver.model;
 
 
-// import org.springframework.context.annotation.Bean;
-// import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-// @Configuration
+@Configuration
 public class Student {
 
     private String name;
@@ -44,5 +44,14 @@ public class Student {
 
     public void setAverageScore(double averageScore) {
         this.averageScore = averageScore;
+    }
+
+     @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", averageScore=" + averageScore +
+                '}';
     }
 }

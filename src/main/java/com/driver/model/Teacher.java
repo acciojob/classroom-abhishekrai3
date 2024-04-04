@@ -1,9 +1,9 @@
 package com.driver.model;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
 
-@Configuration
+// @Configuration
 
 public class Teacher {
 
